@@ -21,15 +21,13 @@
 
 import * as bootstrap from 'react-bootstrap';
 
-import { faCircle, faCommentDots, faComments, faEnvelope, faListUl, faSearch, faUser } from '@fortawesome/free-solid-svg-icons';
+import {faCircle, faCommentDots, faComments, faEnvelope, faListUl, faSearch, faUser} from '@fortawesome/free-solid-svg-icons';
 
-import { faTwitter } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import React from 'react';
 import RevisionsTable from './parts/revisions-table';
-
-
+import {faTwitter} from '@fortawesome/free-brands-svg-icons';
 
 
 const {Alert, Button, Col, Container, Row} = bootstrap;
