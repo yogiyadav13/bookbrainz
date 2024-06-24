@@ -27,7 +27,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import React from 'react';
 import RevisionsTable from './parts/revisions-table';
-import {faTwitter} from '@fortawesome/free-brands-svg-icons';
+import {faXTwitter} from '@fortawesome/free-brands-svg-icons';
 
 
 const {Alert, Button, Col, Container, Row} = bootstrap;
@@ -153,10 +153,10 @@ class IndexPage extends React.Component {
 											<a className="contact-text" href="https://x.com/BookBrainz">
 												<FontAwesomeIcon
 													className="contact-text"
-													icon={faTwitter}
+													icon={faXTwitter}
 													size="2x"
 												/>
-												Twitter
+												X
 											</a>
 											<FontAwesomeIcon
 												className="margin-sides-1 contact-text"
