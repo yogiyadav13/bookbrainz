@@ -1,4 +1,4 @@
-/*
+/* 
  * Copyright (C) 2020 Prabal Singh
  *
  * This program is free software; you can redistribute it and/or modify
@@ -16,160 +16,143 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-import * as bootstrap from 'react-bootstrap';
-import * as utilsHelper from '../../../helpers/utils';
-import {genEntityIconHTMLElement, getEntityLabel, getEntityUrl} from '../../../helpers/entity';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import PropTypes from 'prop-types';
 import React from 'react';
-import {faCodeBranch} from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
+import * as bootstrap from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCodeBranch } from '@fortawesome/free-solid-svg-icons';
+import * as utilsHelper from '../../../helpers/utils';
+import { genEntityIconHTMLElement, getEntityLabel, getEntityUrl } from '../../../helpers/entity';
 
+const { Table } = bootstrap;
+const { formatDate, stringToHTMLWithLinks } = utilsHelper;
 
-const {Table} = bootstrap;
-const {formatDate, stringToHTMLWithLinks} = utilsHelper;
+const handleMouseEnter = (e) => {
+  	e.currentTarget.style.color = '';
+};
+
+const handleMouseOver = (e) => {
+  	e.currentTarget.style.color = '#963873';
+};
+
+const handleMouseOut = (e) => {
+  	e.currentTarget.style.color = '';
+};
 
 function RevisionsTable(props) {
-	const {results, showEntities, showRevisionNote, showRevisionEditor, tableHeading} = props;
+	const { results, showEntities, showRevisionNote, showRevisionEditor, tableHeading } = props;
+
 	return (
 		<div>
-			<div>
-				<h1 className="text-center">{tableHeading}</h1>
-			</div>
-			<hr className="thin"/>
-			{
-				results.length > 0 ?
-					<Table
-						borderless
-						responsive
-						striped
-					>
-						<thead>
-							<tr>
-								<th width="16%">Revision ID</th>
-								{
-									showEntities ?
-										<th width="42%">Modified entities</th> : null
-								}
-								{
-									showRevisionEditor ?
-										<th width="25%">User</th> : null
-								}
-								{
-									showRevisionNote ?
-										<th width="16%">Note</th> : null
-								}
-								<th width="16%">Date</th>
-							</tr>
-						</thead>
-
-						<tbody>
-							{results.map((revision) => (
-								<tr key={revision.revisionId}>
-								<td>
-									<a
-									href={`/revision/${revision.revisionId}`}
-									onMouseEnter={handleMouseEnter}
-									onMouseOver={handleMouseOver}
-									onMouseOut={handleMouseOut}
-									style={{ color: 'rgb(78,126,194)' }}
-									title={`${revision.isMerge ? 'Merge revision' : 'Revision'} ${revision.revisionId}`}
-									>
-									#{revision.revisionId}
-									{revision.isMerge && (
-										<span className="round-color-icon" style={{ marginLeft: '0.5em' }}>
-										<FontAwesomeIcon flip="vertical" icon={faCodeBranch} transform="shrink-4" />
-										</span>
-									)}
-									</a>
-								</td>
-								{showEntities && (
-									<td>
-									{revision.entities.map((entity) => (
-										<div key={`${revision.revisionId}-${entity.bbid}`}>
-										<a
-											href={getEntityUrl(entity)}
-											onMouseEnter={handleMouseEnter}
-											onMouseOver={handleMouseOver}
-											onMouseOut={handleMouseOut}
-											style={{ color: 'rgb(78,126,194)' }}
-										>
-											{genEntityIconHTMLElement(entity.type)}
-											{getEntityLabel(entity)}
-										</a>
-										</div>
-									))}
-									</td>
-								)}
-								{showRevisionEditor && (
-									<td>
-									<a
-										href={`/editor/${revision.editor.id}`}
-										onMouseEnter={handleMouseEnter}
-										onMouseOver={handleMouseOver}
-										onMouseOut={handleMouseOut}
-										style={{ color: 'rgb(78,126,194)' }}
-									>
-										{revision.editor.name}
-									</a>
-									</td>
-								)}
-								{showRevisionNote && (
-									<td>
-									{revision.notes.map((note) => (
-										<div className="revision-note clearfix" key={note.id}>
-										<span className="note-content">
-											{stringToHTMLWithLinks(note.content)}
-											<a className="note-author float-right" href={`/editor/${note.author.id}`}>
-											—{note.author.name}
-											</a>
-										</span>
-										</div>
-									))}
-									</td>
-								)}
-								<td>{formatDate(new Date(revision.createdAt), true)}</td>
-								</tr>
-							))}
-							</tbody>
-					</Table> :
-
-					<div>
-						<h4> No revisions to show</h4>
-						<hr className="wide"/>
-					</div>
-			}
+		<div>
+			<h1 className="text-center">{tableHeading}</h1>
 		</div>
-
+		<hr className="thin" />
+		{results.length > 0 ? (
+			<Table borderless responsive striped>
+			<thead>
+				<tr>
+				<th width="16%">Revision ID</th>
+				{showEntities && <th width="42%">Modified entities</th>}
+				{showRevisionEditor && <th width="25%">User</th>}
+				{showRevisionNote && <th width="16%">Note</th>}
+				<th width="16%">Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				{results.map((revision) => (
+				<tr key={revision.revisionId}>
+					<td>
+					<a
+						href={`/revision/${revision.revisionId}`}
+						onMouseEnter={handleMouseEnter}
+						onMouseOver={handleMouseOver}
+						onMouseOut={handleMouseOut}
+						style={{ color: 'rgb(78,126,194)' }}
+						title={`${revision.isMerge ? 'Merge revision' : 'Revision'} ${revision.revisionId}`}
+					>
+						#{revision.revisionId}
+						{revision.isMerge && (
+						<span className="round-color-icon" style={{ marginLeft: '0.5em' }}>
+							<FontAwesomeIcon flip="vertical" icon={faCodeBranch} transform="shrink-4" />
+						</span>
+						)}
+					</a>
+					</td>
+					{showEntities && (
+					<td>
+						{revision.entities.map((entity) => (
+						<div key={`${revision.revisionId}-${entity.bbid}`}>
+							<a
+							href={getEntityUrl(entity)}
+							onMouseEnter={handleMouseEnter}
+							onMouseOver={handleMouseOver}
+							onMouseOut={handleMouseOut}
+							style={{ color: 'rgb(78,126,194)' }}
+							>
+							{genEntityIconHTMLElement(entity.type)}
+							{getEntityLabel(entity)}
+							</a>
+						</div>
+						))}
+					</td>
+					)}
+					{showRevisionEditor && (
+					<td>
+						<a
+						href={`/editor/${revision.editor.id}`}
+						onMouseEnter={handleMouseEnter}
+						onMouseOver={handleMouseOver}
+						onMouseOut={handleMouseOut}
+						style={{ color: 'rgb(78,126,194)' }}
+						>
+						{revision.editor.name}
+						</a>
+					</td>
+					)}
+					{showRevisionNote && (
+					<td>
+						{revision.notes.map((note) => (
+						<div className="revision-note clearfix" key={note.id}>
+							<span className="note-content">
+							{stringToHTMLWithLinks(note.content)}
+							<a className="note-author float-right" href={`/editor/${note.author.id}`}>
+								—{note.author.name}
+							</a>
+							</span>
+						</div>
+						))}
+					</td>
+					)}
+					<td>{formatDate(new Date(revision.createdAt), true)}</td>
+				</tr>
+				))}
+			</tbody>
+			</Table>
+		) : (
+			<div>
+			<h4>No revisions to show</h4>
+			<hr className="wide" />
+			</div>
+		)}
+		</div>
 	);
 }
 
 RevisionsTable.propTypes = {
-	results: PropTypes.array.isRequired,
-	showEntities: PropTypes.bool,
-	showRevisionEditor: PropTypes.bool,
-	showRevisionNote: PropTypes.bool,
-	tableHeading: PropTypes.node
+  results: PropTypes.array.isRequired,
+  showEntities: PropTypes.bool,
+  showRevisionEditor: PropTypes.bool,
+  showRevisionNote: PropTypes.bool,
+  tableHeading: PropTypes.node,
 };
+
 RevisionsTable.defaultProps = {
-	showEntities: false,
-	showRevisionEditor: false,
-	showRevisionNote: false,
-	tableHeading: 'Recent Activity'
-
+  showEntities: false,
+  showRevisionEditor: false,
+  showRevisionNote: false,
+  tableHeading: 'Recent Activity',
 };
-
-
-const handleMouseEnter = (e) => {
-	e.currentTarget.style.color = '';
-	};
-
-	const handleMouseOver = (e) => {
-	e.currentTarget.style.color = '#963873';
-	};
-
-	const handleMouseOut = (e) => {
-	e.currentTarget.style.color = '';
-	};
 
 RevisionsTable.displayName = 'RevisionsTable';
 
