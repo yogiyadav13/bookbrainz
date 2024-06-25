@@ -63,87 +63,74 @@ function RevisionsTable(props) {
 						</thead>
 
 						<tbody>
-							{
-								results.map((revision) => (
-									<tr key={revision.revisionId}>
-										<td>
-											<a
-												href={`/revision/${revision.revisionId}`}
-												onMouseEnter={(e) => e.currentTarget.style.color = ''}
-												onMouseOver={(e) => e.currentTarget.style.color = '#963873'}
-												onMouseOut={(e) => e.currentTarget.style.color = ''}
-												style={{ color: 'rgb(78,126,194)' }}
-												title={`${revision.isMerge ? 'Merge revision' : 'Revision'} ${revision.revisionId}`}
-											>
-												#{revision.revisionId}
-												{revision.isMerge &&
-													<span
-														className="round-color-icon"
-														style={{marginLeft: '0.5em'}}
-													>
-														<FontAwesomeIcon
-															flip="vertical" icon={faCodeBranch}
-															transform="shrink-4"
-														/>
-													</span>
-												}
+							{results.map((revision) => (
+								<tr key={revision.revisionId}>
+								<td>
+									<a
+									href={`/revision/${revision.revisionId}`}
+									onMouseEnter={handleMouseEnter}
+									onMouseOver={handleMouseOver}
+									onMouseOut={handleMouseOut}
+									style={{ color: 'rgb(78,126,194)' }}
+									title={`${revision.isMerge ? 'Merge revision' : 'Revision'} ${revision.revisionId}`}
+									>
+									#{revision.revisionId}
+									{revision.isMerge && (
+										<span className="round-color-icon" style={{ marginLeft: '0.5em' }}>
+										<FontAwesomeIcon flip="vertical" icon={faCodeBranch} transform="shrink-4" />
+										</span>
+									)}
+									</a>
+								</td>
+								{showEntities && (
+									<td>
+									{revision.entities.map((entity) => (
+										<div key={`${revision.revisionId}-${entity.bbid}`}>
+										<a
+											href={getEntityUrl(entity)}
+											onMouseEnter={handleMouseEnter}
+											onMouseOver={handleMouseOver}
+											onMouseOut={handleMouseOut}
+											style={{ color: 'rgb(78,126,194)' }}
+										>
+											{genEntityIconHTMLElement(entity.type)}
+											{getEntityLabel(entity)}
+										</a>
+										</div>
+									))}
+									</td>
+								)}
+								{showRevisionEditor && (
+									<td>
+									<a
+										href={`/editor/${revision.editor.id}`}
+										onMouseEnter={handleMouseEnter}
+										onMouseOver={handleMouseOver}
+										onMouseOut={handleMouseOut}
+										style={{ color: 'rgb(78,126,194)' }}
+									>
+										{revision.editor.name}
+									</a>
+									</td>
+								)}
+								{showRevisionNote && (
+									<td>
+									{revision.notes.map((note) => (
+										<div className="revision-note clearfix" key={note.id}>
+										<span className="note-content">
+											{stringToHTMLWithLinks(note.content)}
+											<a className="note-author float-right" href={`/editor/${note.author.id}`}>
+											—{note.author.name}
 											</a>
-										</td>
-										{
-											showEntities ?
-												<td>
-													{revision.entities.map(entity => (	
-														<div key={`${revision.revisionId}-${entity.bbid}`}>
-															<a href={getEntityUrl(entity)}
-															onMouseEnter={(e) => e.currentTarget.style.color = ''}
-															onMouseOver={(e) => e.currentTarget.style.color = '#963873'}
-															onMouseOut={(e) => e.currentTarget.style.color = ''}
-															style={{ color: 'rgb(78,126,194)' }}
-														>
-																{genEntityIconHTMLElement(entity.type)}
-																{getEntityLabel(entity)}
-															</a>
-														</div>
-													))}
-												</td> : null
-										}
-										{
-											showRevisionEditor ?
-												<td>
-													<a href={`/editor/${revision.editor.id}`} 
-													onMouseEnter={(e) => e.currentTarget.style.color = ''}
-													onMouseOver={(e) => e.currentTarget.style.color = '#963873'}
-													onMouseOut={(e) => e.currentTarget.style.color = ''}
-													style={{ color: 'rgb(78,126,194)' }}>
-														{revision.editor.name}
-													</a>
-												</td> : null
-										}
-										{
-											showRevisionNote ?
-												<td>
-													{
-														revision.notes.map(note => (
-															<div className="revision-note clearfix" key={note.id}>
-																<span className="note-content">
-																	{stringToHTMLWithLinks(note.content)}
-																	<a
-																		className="note-author float-right"
-																		href={`/editor/${note.author.id}`}
-																	>
-																		—{note.author.name}
-																	</a>
-																</span>
-															</div>
-														))
-													}
-												</td> : null
-										}
-										<td>{formatDate(new Date(revision.createdAt), true)}</td>
-									</tr>
-								))
-							}
-						</tbody>
+										</span>
+										</div>
+									))}
+									</td>
+								)}
+								<td>{formatDate(new Date(revision.createdAt), true)}</td>
+								</tr>
+							))}
+							</tbody>
 					</Table> :
 
 					<div>
@@ -170,6 +157,19 @@ RevisionsTable.defaultProps = {
 	tableHeading: 'Recent Activity'
 
 };
+
+
+const handleMouseEnter = (e) => {
+	e.currentTarget.style.color = '';
+	};
+
+	const handleMouseOver = (e) => {
+	e.currentTarget.style.color = '#963873';
+	};
+
+	const handleMouseOut = (e) => {
+	e.currentTarget.style.color = '';
+	};
 
 RevisionsTable.displayName = 'RevisionsTable';
 
