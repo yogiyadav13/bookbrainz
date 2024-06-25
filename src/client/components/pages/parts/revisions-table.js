@@ -69,6 +69,10 @@ function RevisionsTable(props) {
 										<td>
 											<a
 												href={`/revision/${revision.revisionId}`}
+												onMouseEnter={(e) => e.currentTarget.style.color = ''}
+												onMouseOver={(e) => e.currentTarget.style.color = '#963873'}
+												onMouseOut={(e) => e.currentTarget.style.color = ''}
+												style={{ color: 'rgb(78,126,194)' }}
 												title={`${revision.isMerge ? 'Merge revision' : 'Revision'} ${revision.revisionId}`}
 											>
 												#{revision.revisionId}
@@ -88,9 +92,14 @@ function RevisionsTable(props) {
 										{
 											showEntities ?
 												<td>
-													{revision.entities.map(entity => (
+													{revision.entities.map(entity => (	
 														<div key={`${revision.revisionId}-${entity.bbid}`}>
-															<a href={getEntityUrl(entity)} >
+															<a href={getEntityUrl(entity)}
+															onMouseEnter={(e) => e.currentTarget.style.color = ''}
+															onMouseOver={(e) => e.currentTarget.style.color = '#963873'}
+															onMouseOut={(e) => e.currentTarget.style.color = ''}
+															style={{ color: 'rgb(78,126,194)' }}
+														>
 																{genEntityIconHTMLElement(entity.type)}
 																{getEntityLabel(entity)}
 															</a>
@@ -101,7 +110,11 @@ function RevisionsTable(props) {
 										{
 											showRevisionEditor ?
 												<td>
-													<a href={`/editor/${revision.editor.id}`} >
+													<a href={`/editor/${revision.editor.id}`} 
+													onMouseEnter={(e) => e.currentTarget.style.color = ''}
+													onMouseOver={(e) => e.currentTarget.style.color = '#963873'}
+													onMouseOut={(e) => e.currentTarget.style.color = ''}
+													style={{ color: 'rgb(78,126,194)' }}>
 														{revision.editor.name}
 													</a>
 												</td> : null
