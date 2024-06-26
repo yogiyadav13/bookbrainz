@@ -109,7 +109,8 @@ function RevisionsTable(props) {
 																href={getEntityUrl(entity)}
 																onMouseEnter={handleMouseEnter}
 																onMouseOut={handleMouseOut}
-																onMouseOver={handleMouseOver}>
+																onMouseOver={handleMouseOver}
+															>
 																{genEntityIconHTMLElement(entity.type)}
 																{getEntityLabel(entity)}
 															</a>
@@ -120,11 +121,12 @@ function RevisionsTable(props) {
 										{
 											showRevisionEditor ?
 												<td>
-													<a 
+													<a
 														href={`/editor/${revision.editor.id}`}
 														onMouseEnter={handleMouseEnter}
 														onMouseOut={handleMouseOut}
-														onMouseOver={handleMouseOver}>
+														onMouseOver={handleMouseOver}
+													>
 														{revision.editor.name}
 													</a>
 												</td> : null
