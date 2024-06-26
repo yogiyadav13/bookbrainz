@@ -28,17 +28,17 @@ import {faCodeBranch} from '@fortawesome/free-solid-svg-icons';
 const {Table} = bootstrap;
 const {formatDate, stringToHTMLWithLinks} = utilsHelper;
 
-function handleMouseEnter(tag){
+function handleMouseEnter(tag) {
 	tag.currentTarget.style.color = '';
-};
+}
 
-function handleMouseOver(tag){
+function handleMouseOver(tag) {
 	tag.currentTarget.style.color = '#963873';
-};
+}
 
-function handleMouseOut(tag){
+function handleMouseOut(tag) {
 	tag.currentTarget.style.color = '';
-};
+}
 
 function RevisionsTable(props) {
 	const {results, showEntities, showRevisionNote, showRevisionEditor, tableHeading} = props;
@@ -79,12 +79,12 @@ function RevisionsTable(props) {
 								results.map((revision) => (
 									<tr key={revision.revisionId}>
 										<td>
-											<a 
+											<a
 												href={`/revision/${revision.revisionId}`}
+												title={`${revision.isMerge ? 'Merge revision' : 'Revision'} ${revision.revisionId}`}
 												onMouseEnter={handleMouseEnter}
 												onMouseOut={handleMouseOut}
 												onMouseOver={handleMouseOver}
-												title={`${revision.isMerge ? 'Merge revision' : 'Revision'} ${revision.revisionId}`}
 											>
 												#{revision.revisionId}
 												{revision.isMerge &&
@@ -105,10 +105,10 @@ function RevisionsTable(props) {
 												<td>
 													{revision.entities.map(entity => (
 														<div key={`${revision.revisionId}-${entity.bbid}`}>
-															<a 
+															<a
 																href={getEntityUrl(entity)}
 																onMouseEnter={handleMouseEnter}
-																onMouseOut={handleMouseOut} 
+																onMouseOut={handleMouseOut}
 																onMouseOver={handleMouseOver}>
 																{genEntityIconHTMLElement(entity.type)}
 																{getEntityLabel(entity)}
@@ -121,7 +121,7 @@ function RevisionsTable(props) {
 											showRevisionEditor ?
 												<td>
 													<a 
-														href={`/editor/${revision.editor.id}`} 
+														href={`/editor/${revision.editor.id}`}
 														onMouseEnter={handleMouseEnter}
 														onMouseOut={handleMouseOut}
 														onMouseOver={handleMouseOver}>
