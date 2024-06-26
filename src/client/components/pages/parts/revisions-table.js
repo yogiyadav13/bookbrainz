@@ -28,16 +28,16 @@ import {faCodeBranch} from '@fortawesome/free-solid-svg-icons';
 const {Table} = bootstrap;
 const {formatDate, stringToHTMLWithLinks} = utilsHelper;
 
-const handleMouseEnter = (e) => {
-	e.currentTarget.style.color = '';
+function handleMouseEnter(tag){
+	tag.currentTarget.style.color = '';
 };
 
-const handleMouseOver = (e) => {
-	e.currentTarget.style.color = '#963873';
+function handleMouseOver(tag){
+	tag.currentTarget.style.color = '#963873';
 };
 
-const handleMouseOut = (e) => {
-	e.currentTarget.style.color = '';
+function handleMouseOut(tag){
+	tag.currentTarget.style.color = '';
 };
 
 function RevisionsTable(props) {
@@ -79,10 +79,11 @@ function RevisionsTable(props) {
 								results.map((revision) => (
 									<tr key={revision.revisionId}>
 										<td>
-											<a href={`/revision/${revision.revisionId}`}
+											<a 
+												href={`/revision/${revision.revisionId}`}
 												onMouseEnter={handleMouseEnter}
-												onMouseOver={handleMouseOver}
 												onMouseOut={handleMouseOut}
+												onMouseOver={handleMouseOver}
 												title={`${revision.isMerge ? 'Merge revision' : 'Revision'} ${revision.revisionId}`}
 											>
 												#{revision.revisionId}
@@ -104,10 +105,11 @@ function RevisionsTable(props) {
 												<td>
 													{revision.entities.map(entity => (
 														<div key={`${revision.revisionId}-${entity.bbid}`}>
-															<a href={getEntityUrl(entity)}
+															<a 
+																href={getEntityUrl(entity)}
 																onMouseEnter={handleMouseEnter}
-																onMouseOver={handleMouseOver}
-																onMouseOut={handleMouseOut} >
+																onMouseOut={handleMouseOut} 
+																onMouseOver={handleMouseOver}>
 																{genEntityIconHTMLElement(entity.type)}
 																{getEntityLabel(entity)}
 															</a>
@@ -118,10 +120,11 @@ function RevisionsTable(props) {
 										{
 											showRevisionEditor ?
 												<td>
-													<a href={`/editor/${revision.editor.id}`} 
+													<a 
+														href={`/editor/${revision.editor.id}`} 
 														onMouseEnter={handleMouseEnter}
-														onMouseOver={handleMouseOver}
-														onMouseOut={handleMouseOut}>
+														onMouseOut={handleMouseOut}
+														onMouseOver={handleMouseOver}>
 														{revision.editor.name}
 													</a>
 												</td> : null
