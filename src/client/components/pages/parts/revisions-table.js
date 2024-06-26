@@ -28,6 +28,18 @@ import {faCodeBranch} from '@fortawesome/free-solid-svg-icons';
 const {Table} = bootstrap;
 const {formatDate, stringToHTMLWithLinks} = utilsHelper;
 
+function handleMouseEnter(tag) {
+	tag.currentTarget.style.color = '';
+}
+
+function handleMouseOver(tag) {
+	tag.currentTarget.style.color = '#963873';
+}
+
+function handleMouseOut(tag) {
+	tag.currentTarget.style.color = '';
+}
+
 function RevisionsTable(props) {
 	const {results, showEntities, showRevisionNote, showRevisionEditor, tableHeading} = props;
 	return (
@@ -70,6 +82,9 @@ function RevisionsTable(props) {
 											<a
 												href={`/revision/${revision.revisionId}`}
 												title={`${revision.isMerge ? 'Merge revision' : 'Revision'} ${revision.revisionId}`}
+												onMouseEnter={handleMouseEnter}
+												onMouseOut={handleMouseOut}
+												onMouseOver={handleMouseOver}
 											>
 												#{revision.revisionId}
 												{revision.isMerge &&
@@ -90,7 +105,12 @@ function RevisionsTable(props) {
 												<td>
 													{revision.entities.map(entity => (
 														<div key={`${revision.revisionId}-${entity.bbid}`}>
-															<a href={getEntityUrl(entity)} >
+															<a
+																href={getEntityUrl(entity)}
+																onMouseEnter={handleMouseEnter}
+																onMouseOut={handleMouseOut}
+																onMouseOver={handleMouseOver}
+															>
 																{genEntityIconHTMLElement(entity.type)}
 																{getEntityLabel(entity)}
 															</a>
@@ -101,7 +121,12 @@ function RevisionsTable(props) {
 										{
 											showRevisionEditor ?
 												<td>
-													<a href={`/editor/${revision.editor.id}`} >
+													<a
+														href={`/editor/${revision.editor.id}`}
+														onMouseEnter={handleMouseEnter}
+														onMouseOut={handleMouseOut}
+														onMouseOver={handleMouseOver}
+													>
 														{revision.editor.name}
 													</a>
 												</td> : null
