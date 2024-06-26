@@ -70,6 +70,7 @@ function RevisionsTable(props) {
 											<a
 												href={`/revision/${revision.revisionId}`}
 												title={`${revision.isMerge ? 'Merge revision' : 'Revision'} ${revision.revisionId}`}
+												className="revision-revision-id"
 											>
 												#{revision.revisionId}
 												{revision.isMerge &&
