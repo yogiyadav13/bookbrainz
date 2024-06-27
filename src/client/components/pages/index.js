@@ -190,7 +190,7 @@ class IndexPage extends React.Component {
 			<Container>
 				<Row>
 					<Col lg={{offset: 2, span: 8}}>
-						<h1 className="text-center">The Open Book Database</h1>
+						<h1 className="text-center"><b>The Open Book Database</b></h1>
 						<p className="lead text-justify">
 							BookBrainz is a project to create an online database
 							of information about every single book, magazine,
