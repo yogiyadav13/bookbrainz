@@ -20,7 +20,7 @@ import {faCircle, faCommentDots, faComments, faEnvelope} from '@fortawesome/free
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 import React from 'react';
-import {faXTwitter} from '@fortawesome/free-brands-svg-icons';
+import {faTwitter} from '@fortawesome/free-brands-svg-icons';
 
 
 /**
@@ -31,7 +31,7 @@ import {faXTwitter} from '@fortawesome/free-brands-svg-icons';
 function AboutPage(): JSX.Element {
 	const NESLink =
 		'https://ocharles.org.uk/blog/posts/' +
-			'2012-07-10-nes-does-it-better-1.html';
+		'2012-07-10-nes-does-it-better-1.html';
 
 	return (
 		<div>
@@ -114,10 +114,10 @@ function AboutPage(): JSX.Element {
 				<a className="contact-text" href="https://x.com/BookBrainz">
 					<FontAwesomeIcon
 						className="contact-text"
-						icon={faXTwitter}
+						icon={faTwitter}
 						size="2x"
 					/>
-					X
+					Twitter
 				</a>
 				<FontAwesomeIcon
 					className="margin-sides-1 contact-text"
