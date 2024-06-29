@@ -56,7 +56,7 @@ class Layout extends React.Component {
 
 	handleDarkMode = () => {
 		this.setState(prevState => ({darkMode: !prevState.darkMode}));
-	}
+	};
 
 	handleMouseDown(event) {
 		event.preventDefault();
@@ -401,7 +401,7 @@ class Layout extends React.Component {
 		const childNode = homepage ?
 			childrenWithProps :
 			(
-				<div className={`container`} id="content">
+				<div className="container" id="content">
 					{requiresJS && (
 						<div>
 							<noscript>
@@ -434,7 +434,7 @@ class Layout extends React.Component {
 				<a className="sr-only sr-only-focusable" href="#content">
 					Skip to main content
 				</a>
-				<Navbar className={`BookBrainz ${this.state.darkMode ? 'dark-mode':''}`} expand="lg" fixed="top" role="navigation">
+				<Navbar className={`BookBrainz ${this.state.darkMode ? 'dark-mode' : ''}`} expand="lg" fixed="top" role="navigation">
 					{this.renderNavHeader()}
 					<Navbar.Toggle/>
 					{this.renderNavContent()}
