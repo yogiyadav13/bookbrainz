@@ -68,7 +68,7 @@ function RevisionsTable(props) {
 									<tr key={revision.revisionId}>
 										<td>
 											<a
-												className="hover-text" href={`/revision/${revision.revisionId}`} 
+												className="hover-text" href={`/revision/${revision.revisionId}`}
 												title={`${revision.isMerge ? 'Merge revision' : 'Revision'} ${revision.revisionId}`}
 											>
 												#{revision.revisionId}
@@ -101,7 +101,7 @@ function RevisionsTable(props) {
 										{
 											showRevisionEditor ?
 												<td>
-													<a className="hover-text" href={`/editor/${revision.editor.id}`}  >
+													<a className="hover-text" href={`/editor/${revision.editor.id}`}>
 														{revision.editor.name}
 													</a>
 												</td> : null
