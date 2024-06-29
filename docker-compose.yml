@@ -2,7 +2,7 @@ services:
 
   bookbrainz-site:
     container_name: bookbrainz-site
-    command: yarn start
+    command: yarn run debug
     build:
       context: ./
       dockerfile: Dockerfile
