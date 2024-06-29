@@ -27,10 +27,10 @@ import React from 'react';
 const {Col, Container, Row} = bootstrap;
 
 function Footer(props) {
-	const {repositoryUrl, siteRevision} = props;
+	const {darkMode, repositoryUrl, siteRevision} = props;
 
 	return (
-		<footer className="footer">
+		<footer className={`footer ${darkMode ? 'dark-mode' : ''}`}>
 			<Container fluid>
 				<Row>
 					<Col xs={4}>
