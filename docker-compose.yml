@@ -1,3 +1,5 @@
+
+
 services:
 
   bookbrainz-site:
@@ -24,7 +26,7 @@ services:
     image: postgres:12.3
     user: postgres
     ports:
-      - "127.0.0.1:5432:5432"
+      - "5432:5432"
     environment:
       - POSTGRES_DB=bookbrainz
       - POSTGRES_USER=bookbrainz
@@ -35,14 +37,13 @@ services:
   elasticsearch:
     container_name: elasticsearch
     restart: unless-stopped
-    image: docker.elastic.co/elasticsearch/elasticsearch:5.6.8
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.3
     environment:
-      # Skip bootstrap checks (see https://github.com/docker-library/elasticsearch/issues/98)
       - transport.host=127.0.0.1
       - discovery.zen.minimum_master_nodes=1
       - xpack.security.enabled=false
     ports:
-      - "127.0.0.1:9200:9200"
+      - "9200:9200"
     volumes:
       - elasticsearch-data:/usr/share/elasticsearch/data
 
@@ -52,8 +53,8 @@ services:
     image: redis:3.2-alpine
     command: "redis-server --appendonly yes"
     ports:
-      - "127.0.0.1:6379:6379"
-      - "127.0.0.1:3600:3600"
+      - "6379:6379"
+      - "3600:3600"
 
   startup:
     image: waisbrot/wait
@@ -70,3 +71,4 @@ services:
 volumes:
   postgres-data:
   elasticsearch-data:
+
