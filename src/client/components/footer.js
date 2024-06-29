@@ -91,6 +91,7 @@ function Footer(props) {
 
 Footer.displayName = 'Footer';
 Footer.propTypes = {
+	darkMode: PropTypes.bool.isRequired,
 	repositoryUrl: PropTypes.string.isRequired,
 	siteRevision: PropTypes.string.isRequired
 };

@@ -27,7 +27,7 @@ import {IdentifierTypeEditorIcon, RelationshipTypeEditorIcon} from '../helpers/u
 import {PrivilegeType, checkPrivilege} from '../../common/helpers/privileges-utils';
 import {
 	faBarcode,
-	faChartLine, faClipboardQuestion, faFileLines, faGripVertical, faLink, faListUl,faMoon, faNewspaper, faPlus, faQuestionCircle,
+	faChartLine, faClipboardQuestion, faFileLines, faGripVertical, faLink, faListUl, faMoon, faNewspaper, faPlus, faQuestionCircle,
 	faSearch, faShieldHalved, faSignInAlt, faSignOutAlt, faSun, faTrophy, faUserCircle, faUserGear
 } from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -347,9 +347,9 @@ class Layout extends React.Component {
 				{!(homepage || hideSearch) && this.renderSearchForm()}
 				<Nav>
 					<Nav.Item onClick={this.handleDarkMode}>
-							<Nav.Link>
-								<FontAwesomeIcon icon={this.state.darkMode ? faSun : faMoon}/>
-							</Nav.Link>
+						<Nav.Link>
+							<FontAwesomeIcon icon={this.state.darkMode ? faSun : faMoon}/>
+						</Nav.Link>
 					</Nav.Item>
 				</Nav>
 				<Nav className={revisionsClassName}>
@@ -396,14 +396,12 @@ class Layout extends React.Component {
 		} = this.props;
 
 		// Shallow merges parents props into child components
-		const { darkMode } = this.state;
-		const childrenWithProps = React.Children.map(children, child =>
-            React.cloneElement(child, {darkMode})
-        );
+		const {darkMode} = this.state;
+		const childrenWithProps = React.Children.map(children, child => React.cloneElement(child, {darkMode}));
 		const childNode = homepage ?
 			childrenWithProps :
 			(
-				<div className={`container ${this.state.darkMode ? 'dark-mode':''}`} id="content">
+				<div className={`container`} id="content">
 					{requiresJS && (
 						<div>
 							<noscript>
@@ -443,7 +441,7 @@ class Layout extends React.Component {
 				</Navbar>
 				{alerts}
 				{childNode}
-				<Footer className='dark-mode'
+				<Footer
 					darkMode={this.state.darkMode}
 					repositoryUrl={repositoryUrl}
 					siteRevision={siteRevision}
