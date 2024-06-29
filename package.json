@@ -28,7 +28,7 @@
   },
   "browserslist": "> 0.25%, not dead",
   "overrides": {
-    "react-select-fast-filter-options":{
+    "react-select-fast-filter-options": {
       "react-select": "$react-select"
     }
   },

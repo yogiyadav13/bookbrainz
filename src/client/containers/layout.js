@@ -27,8 +27,8 @@ import {IdentifierTypeEditorIcon, RelationshipTypeEditorIcon} from '../helpers/u
 import {PrivilegeType, checkPrivilege} from '../../common/helpers/privileges-utils';
 import {
 	faBarcode,
-	faChartLine, faClipboardQuestion, faFileLines, faGripVertical, faLink, faListUl, faNewspaper, faPlus, faQuestionCircle,
-	faSearch, faShieldHalved, faSignInAlt, faSignOutAlt, faTrophy, faUserCircle, faUserGear
+	faChartLine, faClipboardQuestion, faFileLines, faGripVertical, faLink, faListUl, faMoon, faNewspaper, faPlus, faQuestionCircle,
+	faSearch, faShieldHalved, faSignInAlt, faSignOutAlt, faSun, faTrophy, faUserCircle, faUserGear
 } from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import Footer from './../components/footer';
@@ -44,13 +44,18 @@ const {Alert, Button, Form, FormControl, InputGroup, Nav, Navbar, NavDropdown} =
 class Layout extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {keepMenuOpen: false, menuOpen: false};
+		this.state = {darkMode: false, keepMenuOpen: false, menuOpen: false};
 		this.renderNavContent = this.renderNavContent.bind(this);
 		this.renderNavHeader = this.renderNavHeader.bind(this);
 		this.renderDocsDropdown = this.renderDocsDropdown.bind(this);
 		this.handleDropdownToggle = this.handleDropdownToggle.bind(this);
 		this.handleDropdownClick = this.handleDropdownClick.bind(this);
 		this.handleMouseDown = this.handleMouseDown.bind(this);
+		this.toggleDarkMode = this.toggleDarkMode.bind(this);
+	}
+
+	handleDarkMode() {
+		this.setState(prevState => ({darkMode: !prevState.darkMode}));
 	}
 
 	handleMouseDown(event) {
@@ -75,23 +80,25 @@ class Layout extends React.Component {
 		const {homepage} = this.props;
 
 		return (
-			<Navbar.Brand className="logo">
-				<a href="/">
-					{homepage ? (
-						<img
-							alt="BookBrainz icon"
-							src="/images/BookBrainz_logo_icon.svg"
-							title="BookBrainz"
-						/>
-					) : (
-						<img
-							alt="BookBrainz icon"
-							src="/images/BookBrainz_logo_mini.svg"
-							title="BookBrainz"
-						/>
-					)}
-				</a>
-			</Navbar.Brand>
+			<div className={this.state.darkMode ? 'dark-mode' : ''}>
+				<Navbar.Brand className="logo">
+					<a href="/">
+						{homepage ? (
+							<img
+								alt="BookBrainz icon"
+								src="/images/BookBrainz_logo_icon.svg"
+								title="BookBrainz"
+							/>
+						) : (
+							<img
+								alt="BookBrainz icon"
+								src="/images/BookBrainz_logo_mini.svg"
+								title="BookBrainz"
+							/>
+						)}
+					</a>
+				</Navbar.Brand>
+			</div>
 		);
 	}
 
@@ -103,31 +110,33 @@ class Layout extends React.Component {
 			</span>
 		);
 		return (
-			<Nav>
-				<NavDropdown
-					alignRight
-					id="docs-dropdown"
-					title={docsDropdownTitle}
-					onMouseDown={this.handleMouseDown}
-				>
-					<NavDropdown.Item href="/help">
-						<FontAwesomeIcon fixedWidth icon={faQuestionCircle}/>
-						{' Help '}
-					</NavDropdown.Item>
-					<NavDropdown.Item href="/faq">
-						<FontAwesomeIcon fixedWidth icon={faClipboardQuestion}/>
-						{' FAQs '}
-					</NavDropdown.Item>
-					<NavDropdown.Item href="/relationship-types">
-						<FontAwesomeIcon fixedWidth icon={faLink}/>
-						{' Relationship Types '}
-					</NavDropdown.Item>
-					<NavDropdown.Item href="/identifier-types">
-						<FontAwesomeIcon fixedWidth icon={faBarcode}/>
-						{' Identifier Types '}
-					</NavDropdown.Item>
-				</NavDropdown>
-			</Nav>
+			<div className={this.state.darkMode ? 'dark-mode' : ''}>
+				<Nav>
+					<NavDropdown
+						alignRight
+						id="docs-dropdown"
+						title={docsDropdownTitle}
+						onMouseDown={this.handleMouseDown}
+					>
+						<NavDropdown.Item href="/help">
+							<FontAwesomeIcon fixedWidth icon={faQuestionCircle}/>
+							{' Help '}
+						</NavDropdown.Item>
+						<NavDropdown.Item href="/faq">
+							<FontAwesomeIcon fixedWidth icon={faClipboardQuestion}/>
+							{' FAQs '}
+						</NavDropdown.Item>
+						<NavDropdown.Item href="/relationship-types">
+							<FontAwesomeIcon fixedWidth icon={faLink}/>
+							{' Relationship Types '}
+						</NavDropdown.Item>
+						<NavDropdown.Item href="/identifier-types">
+							<FontAwesomeIcon fixedWidth icon={faBarcode}/>
+							{' Identifier Types '}
+						</NavDropdown.Item>
+					</NavDropdown>
+				</Nav>
+			</div>
 		);
 	}
 
@@ -137,14 +146,16 @@ class Layout extends React.Component {
 			{};
 
 		return (
-			<Nav>
-				<Nav.Item>
-					<Nav.Link {...disableSignUp} href="/auth">
-						<FontAwesomeIcon icon={faSignInAlt}/>
-						{' Sign In / Register'}
-					</Nav.Link>
-				</Nav.Item>
-			</Nav>
+			<div className={this.state.darkMode ? 'dark-mode' : ''}>
+				<Nav>
+					<Nav.Item>
+						<Nav.Link {...disableSignUp} href="/auth">
+							<FontAwesomeIcon icon={faSignInAlt}/>
+							{' Sign In / Register'}
+						</Nav.Link>
+					</Nav.Item>
+				</Nav>
+			</div>
 		);
 	}
 
@@ -338,38 +349,45 @@ class Layout extends React.Component {
 		const revisionsClassName = homepage || hideSearch ? 'ml-auto' : null;
 
 		return (
-			<Navbar.Collapse id="bs-example-navbar-collapse-1">
-				{!(homepage || hideSearch) && this.renderSearchForm()}
-				<Nav className={revisionsClassName}>
-					<Nav.Item>
-						<Nav.Link href="/revisions">
-							<FontAwesomeIcon icon={faListUl}/>
-							{' Revisions '}
-						</Nav.Link>
-					</Nav.Item>
-				</Nav>
-				<Nav>
-					<Nav.Item>
-						<Nav.Link href="/collections">
-							<FontAwesomeIcon icon={faGripVertical}/>
-							{' Collections '}
-						</Nav.Link>
-					</Nav.Item>
-				</Nav>
-				<Nav>
-					<Nav.Item>
-						<Nav.Link href="/statistics">
-							<FontAwesomeIcon icon={faChartLine}/>
-							{' Statistics '}
-						</Nav.Link>
-					</Nav.Item>
-				</Nav>
-				{this.renderDocsDropdown()}
-				{
-					user && user.id ?
-						this.renderLoggedInDropdown() : this.renderGuestDropdown()
-				}
-			</Navbar.Collapse>
+			<div className={this.state.darkMode ? 'dark-mode' : ''} id="bs-example-navbar-collapse-1">
+				<Navbar.Collapse id="bs-example-navbar-collapse-1">
+					{!(homepage || hideSearch) && this.renderSearchForm()}
+					<Nav className={revisionsClassName}>
+						<Nav.Item onClick={this.handleDarkMode}>
+							<Nav.Link>
+								<FontAwesomeIcon icon={this.state.darkMode ? faSun : faMoon}/>
+							</Nav.Link>
+						</Nav.Item>
+						<Nav.Item>
+							<Nav.Link href="/revisions">
+								<FontAwesomeIcon icon={faListUl}/>
+								{' Revisions '}
+							</Nav.Link>
+						</Nav.Item>
+					</Nav>
+					<Nav>
+						<Nav.Item>
+							<Nav.Link href="/collections">
+								<FontAwesomeIcon icon={faGripVertical}/>
+								{' Collections '}
+							</Nav.Link>
+						</Nav.Item>
+					</Nav>
+					<Nav>
+						<Nav.Item>
+							<Nav.Link href="/statistics">
+								<FontAwesomeIcon icon={faChartLine}/>
+								{' Statistics '}
+							</Nav.Link>
+						</Nav.Item>
+					</Nav>
+					{this.renderDocsDropdown()}
+					{
+						user && user.id ?
+							this.renderLoggedInDropdown() : this.renderGuestDropdown()
+					}
+				</Navbar.Collapse>
+			</div>
 		);
 	}
 
@@ -387,24 +405,26 @@ class Layout extends React.Component {
 		const childNode = homepage ?
 			children :
 			(
-				<div className="container" id="content">
-					{requiresJS && (
-						<div>
-							<noscript>
-								<div className="alert alert-danger" role="alert">
-									This page will not function correctly without
-									JavaScript! Please enable JavaScript to use this
-									page.
-								</div>
-							</noscript>
-						</div>
-					)}
-					{children}
-					{mergeQueue ?
-						<MergeQueue
-							mergeQueue={mergeQueue}
-						/> : null
-					}
+				<div className={this.state.darkMode ? 'dark-mode' : ''}>
+					<div className="container" id="content">
+						{requiresJS && (
+							<div>
+								<noscript>
+									<div className="alert alert-danger" role="alert">
+										This page will not function correctly without
+										JavaScript! Please enable JavaScript to use this
+										page.
+									</div>
+								</noscript>
+							</div>
+						)}
+						{children}
+						{mergeQueue ?
+							<MergeQueue
+								mergeQueue={mergeQueue}
+							/> : null
+						}
+					</div>
 				</div>
 			);
 
@@ -416,15 +436,17 @@ class Layout extends React.Component {
 		));
 
 		return (
-			<div>
+			<div className={this.state.darkMode ? 'dark-mode' : ''}>
 				<a className="sr-only sr-only-focusable" href="#content">
 					Skip to main content
 				</a>
-				<Navbar className="BookBrainz" expand="lg" fixed="top" role="navigation">
-					{this.renderNavHeader()}
-					<Navbar.Toggle/>
-					{this.renderNavContent()}
-				</Navbar>
+				<div className={this.state.darkMode ? 'dark-mode' : ''}>
+					<Navbar className="BookBrainz" expand="lg" fixed="top" role="navigation">
+						{this.renderNavHeader()}
+						<Navbar.Toggle/>
+						{this.renderNavContent()}
+					</Navbar>
+				</div>
 				{alerts}
 				{childNode}
 				<Footer
