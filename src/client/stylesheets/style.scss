@@ -30,6 +30,10 @@ $disabled-color: lighten($disabled-bg,15%);
 @import "react-datepicker/dist/react-datepicker.css";
 @import "./external-services.scss";
 
+// *{
+// 	background-color: black;
+// }
+
 .navbar.BookBrainz {
 	background: rgba(255, 255, 255, 1);
 	margin-bottom: 0px;
@@ -887,4 +891,12 @@ div[class~=collapsing]+div[class=card-header] .accordion-arrow {
     position: relative;
     bottom: 0.3em;
 	left: -0.5em;
+}
+
+.hover-text:hover{
+	color: #963873;
+}
+.dark-mode{
+	background-color: rgb(13,17,23) !important;
+	// color: rgb(235,117,59) !important;
 }
