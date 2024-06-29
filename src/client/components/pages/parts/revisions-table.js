@@ -68,12 +68,12 @@ function RevisionsTable(props) {
 									<tr key={revision.revisionId}>
 										<td>
 											<a
-												href={`/revision/${revision.revisionId}`}
+												href={`/revision/${revision.revisionId}`} className='hover-text'
 												title={`${revision.isMerge ? 'Merge revision' : 'Revision'} ${revision.revisionId}`}
 											>
 												#{revision.revisionId}
 												{revision.isMerge &&
-													<span
+													<span 
 														className="round-color-icon"
 														style={{marginLeft: '0.5em'}}
 													>
@@ -89,7 +89,7 @@ function RevisionsTable(props) {
 											showEntities ?
 												<td>
 													{revision.entities.map(entity => (
-														<div key={`${revision.revisionId}-${entity.bbid}`}>
+														<div className='hover-text' key={`${revision.revisionId}-${entity.bbid}`}>
 															<a href={getEntityUrl(entity)} >
 																{genEntityIconHTMLElement(entity.type)}
 																{getEntityLabel(entity)}
@@ -101,7 +101,7 @@ function RevisionsTable(props) {
 										{
 											showRevisionEditor ?
 												<td>
-													<a href={`/editor/${revision.editor.id}`} >
+													<a href={`/editor/${revision.editor.id}`} className='hover-text' >
 														{revision.editor.name}
 													</a>
 												</td> : null
@@ -111,11 +111,11 @@ function RevisionsTable(props) {
 												<td>
 													{
 														revision.notes.map(note => (
-															<div className="revision-note clearfix" key={note.id}>
+															<div className='hover-text' className="revision-note clearfix" key={note.id}>
 																<span className="note-content">
 																	{stringToHTMLWithLinks(note.content)}
 																	<a
-																		className="note-author float-right"
+																		className="note-author float-right hover-text"
 																		href={`/editor/${note.author.id}`}
 																	>
 																		—{note.author.name}

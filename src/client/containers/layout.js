@@ -28,7 +28,7 @@ import {PrivilegeType, checkPrivilege} from '../../common/helpers/privileges-uti
 import {
 	faBarcode,
 	faChartLine, faClipboardQuestion, faFileLines, faGripVertical, faLink, faListUl, faNewspaper, faPlus, faQuestionCircle,
-	faSearch, faShieldHalved, faSignInAlt, faSignOutAlt, faTrophy, faUserCircle, faUserGear
+	faSearch, faShieldHalved, faSignInAlt, faSignOutAlt, faTrophy, faUserCircle, faUserGear, faSun, faMoon
 } from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import Footer from './../components/footer';
@@ -44,13 +44,17 @@ const {Alert, Button, Form, FormControl, InputGroup, Nav, Navbar, NavDropdown} =
 class Layout extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {keepMenuOpen: false, menuOpen: false};
+		this.state = {keepMenuOpen: false, menuOpen: false, darkmode:false};
 		this.renderNavContent = this.renderNavContent.bind(this);
 		this.renderNavHeader = this.renderNavHeader.bind(this);
 		this.renderDocsDropdown = this.renderDocsDropdown.bind(this);
 		this.handleDropdownToggle = this.handleDropdownToggle.bind(this);
 		this.handleDropdownClick = this.handleDropdownClick.bind(this);
 		this.handleMouseDown = this.handleMouseDown.bind(this);
+	}
+
+	toggleDarkMode() {
+		this.setState(prevState => ({darkMode : !prevState.darkMode}));
 	}
 
 	handleMouseDown(event) {

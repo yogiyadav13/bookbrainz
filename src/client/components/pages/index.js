@@ -41,7 +41,7 @@ class IndexPage extends React.Component {
 
 	renderHeader() {
 		return (
-			<div>
+			<div >
 				<Alert className="text-center" variant="warning">
 					Under development — adventurous users, please test and
 					add data! Give us feedback about bugs, glitches and
