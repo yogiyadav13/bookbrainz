@@ -41,7 +41,7 @@ class IndexPage extends React.Component {
 
 	renderHeader() {
 		return (
-			<div>
+			<div >
 				<Alert className="text-center" variant="warning">
 					Under development — adventurous users, please test and
 					add data! Give us feedback about bugs, glitches and
@@ -66,7 +66,7 @@ class IndexPage extends React.Component {
 										<input
 											required
 											autoFocus="autofocus"
-											className={`form-control ${this.props.darkMode ? 'dark-mode' : ''}`}
+											className="form-control"
 											name="q"
 											placeholder="Search for..."
 											type="text"
@@ -264,7 +264,7 @@ class IndexPage extends React.Component {
 
 	render() {
 		return (
-			<div className={this.props.darkMode ? 'dark-mode' : ''}>
+			<div>
 				{this.renderHeader()}
 				{this.renderContent()}
 			</div>
@@ -274,7 +274,6 @@ class IndexPage extends React.Component {
 
 IndexPage.displayName = 'IndexPage';
 IndexPage.propTypes = {
-	darkMode: PropTypes.bool.isRequired,
 	disableSignUp: PropTypes.bool,
 	isLoggedIn: PropTypes.bool.isRequired,
 	recent: PropTypes.array.isRequired,
