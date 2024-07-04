@@ -888,3 +888,10 @@ div[class~=collapsing]+div[class=card-header] .accordion-arrow {
     bottom: 0.3em;
 	left: -0.5em;
 }
+.hover-coloring  :hover{
+	color: #963873;
+}
+
+#background-overlay .btn {
+    border-radius: 50px;
+}
