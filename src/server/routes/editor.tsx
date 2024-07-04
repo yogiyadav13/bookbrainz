@@ -330,7 +330,7 @@ router.get('/:id', async (req, res, next) => {
 		});
 
 		const markup = ReactDOMServer.renderToString(
-			<Layout {...propHelpers.extractLayoutProps(props)} >
+			<Layout {...propHelpers.extractLayoutProps(props)} tabActive={6}>
 				<EditorContainer
 					{...propHelpers.extractEditorProps(props)}
 				>
@@ -387,7 +387,7 @@ router.get('/:id/revisions', async (req, res, next) => {
 		});
 
 		const markup = ReactDOMServer.renderToString(
-			<Layout {...propHelpers.extractLayoutProps(props)}>
+			<Layout {...propHelpers.extractLayoutProps(props)} tabActive={6}>
 				<EditorContainer
 					{...propHelpers.extractEditorProps(props)}
 				>
@@ -562,7 +562,7 @@ router.get('/:id/achievements', async (req, res, next) => {
 	});
 
 	const markup = ReactDOMServer.renderToString(
-		<Layout {...propHelpers.extractLayoutProps(props)}>
+		<Layout {...propHelpers.extractLayoutProps(props)} tabActive={6}>
 			<EditorContainer
 				{...propHelpers.extractEditorProps(props)}
 			>
@@ -669,7 +669,7 @@ router.get('/:id/collections', async (req, res, next) => {
 			tableHeading: 'Collections'
 		});
 		const markup = ReactDOMServer.renderToString(
-			<Layout {...propHelpers.extractLayoutProps(props)}>
+			<Layout {...propHelpers.extractLayoutProps(props)} tabActive={6}>
 				<EditorContainer
 					{...propHelpers.extractEditorProps(props)}
 				>

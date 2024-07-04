@@ -27,6 +27,7 @@ const LAYOUT_PROPS = [
 	'repositoryUrl',
 	'requiresJS',
 	'siteRevision',
+	'tabActive',
 	'user'
 ];
 

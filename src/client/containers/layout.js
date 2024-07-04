@@ -27,8 +27,8 @@ import {IdentifierTypeEditorIcon, RelationshipTypeEditorIcon} from '../helpers/u
 import {PrivilegeType, checkPrivilege} from '../../common/helpers/privileges-utils';
 import {
 	faBarcode,
-	faChartLine, faClipboardQuestion, faFileLines, faGripVertical, faLink, faListUl, faNewspaper, faPlus, faQuestionCircle,
-	faSearch, faShieldHalved, faSignInAlt, faSignOutAlt, faTrophy, faUserCircle, faUserGear
+	faChartLine, faClipboardQuestion, faFileLines, faGripVertical, faLink, faListUl, faMoon, faNewspaper, faPlus, faQuestionCircle,
+	faSearch, faShieldHalved, faSignInAlt, faSignOutAlt, faSun, faTrophy, faUserCircle, faUserGear
 } from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import Footer from './../components/footer';
@@ -44,14 +44,19 @@ const {Alert, Button, Form, FormControl, InputGroup, Nav, Navbar, NavDropdown} =
 class Layout extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {keepMenuOpen: false, menuOpen: false};
+		this.state = {darkMode: false, keepMenuOpen: false, menuOpen: false};
 		this.renderNavContent = this.renderNavContent.bind(this);
 		this.renderNavHeader = this.renderNavHeader.bind(this);
 		this.renderDocsDropdown = this.renderDocsDropdown.bind(this);
+		this.handleDarkMode = this.handleDarkMode.bind(this);
 		this.handleDropdownToggle = this.handleDropdownToggle.bind(this);
 		this.handleDropdownClick = this.handleDropdownClick.bind(this);
 		this.handleMouseDown = this.handleMouseDown.bind(this);
 	}
+
+	handleDarkMode = () => {
+		this.setState(prevState => ({darkMode: !prevState.darkMode}));
+	};
 
 	handleMouseDown(event) {
 		event.preventDefault();
@@ -96,8 +101,9 @@ class Layout extends React.Component {
 	}
 
 	renderDocsDropdown() {
+		const {tabActive} = this.props;
 		const docsDropdownTitle = (
-			<span>
+			<span className={`${tabActive === 4 ? 'active-tab-text' : ''}`}>
 				<FontAwesomeIcon icon={faFileLines}/>
 				{'  Docs'}
 			</span>
@@ -106,6 +112,7 @@ class Layout extends React.Component {
 			<Nav>
 				<NavDropdown
 					alignRight
+					className={`${tabActive === 4 ? 'active-tab' : ''}`}
 					id="docs-dropdown"
 					title={docsDropdownTitle}
 					onMouseDown={this.handleMouseDown}
@@ -149,17 +156,17 @@ class Layout extends React.Component {
 	}
 
 	renderLoggedInDropdown() {
-		const {user} = this.props;
+		const {tabActive, user} = this.props;
 
 		const createDropdownTitle = (
-			<span>
+			<span className={`${tabActive === 5 ? 'active-tab-text' : ''}`}>
 				<FontAwesomeIcon icon={faPlus}/>
 				{'  Add'}
 			</span>
 		);
 
 		const userDropdownTitle = user && (
-			<span>
+			<span className={`${tabActive === 6 ? 'active-tab-text' : ''}`}>
 				<FontAwesomeIcon icon={faUserCircle}/>
 				{`  ${user.name}`}
 			</span>
@@ -236,6 +243,7 @@ class Layout extends React.Component {
 				{showPrivilegeDropdown && privilegeDropDown}
 				<NavDropdown
 					alignRight
+					className={`${tabActive === 5 ? 'active-tab' : ''}`}
 					id="create-dropdown"
 					open={this.state.menuOpen}
 					title={createDropdownTitle}
@@ -275,6 +283,7 @@ class Layout extends React.Component {
 				</NavDropdown>
 				<NavDropdown
 					alignRight
+					className={`${tabActive === 6 ? 'active-tab' : ''}`}
 					id="user-dropdown"
 					title={userDropdownTitle}
 					onMouseDown={this.handleMouseDown}
@@ -329,7 +338,7 @@ class Layout extends React.Component {
 	}
 
 	renderNavContent() {
-		const {homepage, hideSearch, user} = this.props;
+		const {homepage, hideSearch, tabActive, user} = this.props;
 
 		/*
 		 * GOTCHA: Usage of react-bootstrap FormGroup component inside
@@ -340,9 +349,16 @@ class Layout extends React.Component {
 		return (
 			<Navbar.Collapse id="bs-example-navbar-collapse-1">
 				{!(homepage || hideSearch) && this.renderSearchForm()}
+				<Nav>
+					<Nav.Item onClick={this.handleDarkMode}>
+						<Nav.Link>
+							<FontAwesomeIcon icon={this.state.darkMode ? faSun : faMoon}/>
+						</Nav.Link>
+					</Nav.Item>
+				</Nav>
 				<Nav className={revisionsClassName}>
 					<Nav.Item>
-						<Nav.Link href="/revisions">
+						<Nav.Link className={`${!homepage && (tabActive === 1) ? 'active-tab' : ''}`} href="/revisions">
 							<FontAwesomeIcon icon={faListUl}/>
 							{' Revisions '}
 						</Nav.Link>
@@ -350,7 +366,7 @@ class Layout extends React.Component {
 				</Nav>
 				<Nav>
 					<Nav.Item>
-						<Nav.Link href="/collections">
+						<Nav.Link className={`${!homepage && (tabActive === 2) ? 'active-tab' : ''}`} href="/collections">
 							<FontAwesomeIcon icon={faGripVertical}/>
 							{' Collections '}
 						</Nav.Link>
@@ -358,7 +374,7 @@ class Layout extends React.Component {
 				</Nav>
 				<Nav>
 					<Nav.Item>
-						<Nav.Link href="/statistics">
+						<Nav.Link className={`${!homepage && (tabActive === 3) ? 'active-tab' : ''}`} href="/statistics">
 							<FontAwesomeIcon icon={faChartLine}/>
 							{' Statistics '}
 						</Nav.Link>
@@ -384,8 +400,10 @@ class Layout extends React.Component {
 		} = this.props;
 
 		// Shallow merges parents props into child components
+		const {darkMode} = this.state;
+		const childrenWithProps = React.Children.map(children, child => React.cloneElement(child, {darkMode}));
 		const childNode = homepage ?
-			children :
+			childrenWithProps :
 			(
 				<div className="container" id="content">
 					{requiresJS && (
@@ -399,7 +417,7 @@ class Layout extends React.Component {
 							</noscript>
 						</div>
 					)}
-					{children}
+					{childrenWithProps}
 					{mergeQueue ?
 						<MergeQueue
 							mergeQueue={mergeQueue}
@@ -420,7 +438,7 @@ class Layout extends React.Component {
 				<a className="sr-only sr-only-focusable" href="#content">
 					Skip to main content
 				</a>
-				<Navbar className="BookBrainz" expand="lg" fixed="top" role="navigation">
+				<Navbar className={`BookBrainz ${this.state.darkMode ? 'dark-mode' : ''}`} expand="lg" fixed="top" role="navigation">
 					{this.renderNavHeader()}
 					<Navbar.Toggle/>
 					{this.renderNavContent()}
@@ -428,6 +446,7 @@ class Layout extends React.Component {
 				{alerts}
 				{childNode}
 				<Footer
+					darkMode={this.state.darkMode}
 					repositoryUrl={repositoryUrl}
 					siteRevision={siteRevision}
 				/>
@@ -447,6 +466,7 @@ Layout.propTypes = {
 	repositoryUrl: PropTypes.string.isRequired,
 	requiresJS: PropTypes.bool,
 	siteRevision: PropTypes.string.isRequired,
+	tabActive: PropTypes.number.isRequired,
 	user: PropTypes.object
 };
 Layout.defaultProps = {

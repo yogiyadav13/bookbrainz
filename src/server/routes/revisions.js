@@ -51,7 +51,7 @@ router.get('/', async (req, res, next) => {
 		 * props
 		 */
 		const markup = ReactDOMServer.renderToString(
-			<Layout {...propHelpers.extractLayoutProps(props)}>
+			<Layout {...propHelpers.extractLayoutProps(props)} tabActive={1}>
 				<RevisionsPage {...propHelpers.extractChildProps(props)}/>
 			</Layout>
 		);

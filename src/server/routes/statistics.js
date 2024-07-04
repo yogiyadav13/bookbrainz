@@ -149,7 +149,7 @@ router.get('/', async (req, res, next) => {
 			topEditors
 		});
 		const markup = ReactDOMServer.renderToString(
-			<Layout {...propHelpers.extractLayoutProps(props)}>
+			<Layout {...propHelpers.extractLayoutProps(props)} tabActive={3}>
 				<StatisticsPage
 					allEntities={allEntities}
 					last30DaysEntities={last30DaysEntities}

@@ -34,7 +34,7 @@ router.get('/', (req, res) => {
 	const props = generateProps(req, res);
 
 	const markup = ReactDOMServer.renderToString(
-		<Layout {...propHelpers.extractLayoutProps(props)}>
+		<Layout {...propHelpers.extractLayoutProps(props)} tabActive={4}>
 			<RelationshipTypeMatrix/>
 		</Layout>
 	);

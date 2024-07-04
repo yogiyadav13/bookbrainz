@@ -167,7 +167,7 @@ export function entityEditorMarkup(
 	const store: any = createStore(rootReducer, Immutable.fromJS(initialState));
 	const EntitySection = getEntitySection(props.entityType);
 	const markup = ReactDOMServer.renderToString(
-		<Layout {...propHelpers.extractLayoutProps(rest)}>
+		<Layout {...propHelpers.extractLayoutProps(rest)} tabActive={5}>
 			<Provider store={store}>
 				<EntityEditor
 					validate={getValidator(props.entityType)}

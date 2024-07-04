@@ -91,7 +91,6 @@ function _createStaticRoute(route, title, PageComponent) {
 				<PageComponent/>
 			</Layout>
 		);
-
 		res.send(target({
 			markup,
 			page: title,
