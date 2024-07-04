@@ -30,6 +30,15 @@ $disabled-color: lighten($disabled-bg,15%);
 @import "react-datepicker/dist/react-datepicker.css";
 @import "./external-services.scss";
 
+.dark-mode {
+	background-color: #333;
+	color: #fff;
+}
+
+.hover-color :hover {
+	color: #963873;
+}
+
 .navbar.BookBrainz {
 	background: rgba(255, 255, 255, 1);
 	margin-bottom: 0px;
@@ -38,7 +47,7 @@ $disabled-color: lighten($disabled-bg,15%);
 		// The following prevents menu items from wrapping to two lines (icon on top text on the bottom)
 		// in browsers sizes between collapsed menu and enough horizontal space for all menu items
 		white-space: nowrap;
-		
+
 		& > .disabled > a {
 			color: $disabled-color;
 			background: $disabled-bg;
@@ -63,13 +72,13 @@ $disabled-color: lighten($disabled-bg,15%);
 
 body {
 	padding-top: 64px;
-    padding-bottom: 64px;
+	padding-bottom: 64px;
 }
 
 @media (max-width: 600px) {
-    body {
-        padding-bottom: 128px;
-    }
+	body {
+		padding-bottom: 128px;
+	}
 }
 
 
@@ -239,13 +248,13 @@ html {
 	width: 100%;
 	word-break: break-word;
 	background-color: #f5f5f5;
-    bottom: 0;
+	bottom: 0;
 }
 .contact-text {
 	color: rgb(180, 180, 180);
 	flex-direction: column;
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
 }
 a.contact-text:visited {
 	color: rgb(180, 180, 180);
@@ -407,29 +416,29 @@ ul.inline-aliases {
 
 hr.thin {
 	margin-top: 10px;
-    margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 hr.wide {
 	margin-top: 40px;
-    margin-bottom: 40px;
+	margin-bottom: 40px;
 }
 #pageWithPagination .pager .dropdown-menu {
 	li {
-	  display: initial;
-	  > a,
-	  > span {
-		display: block;
-		padding: 5px 14px;
-		background-color: $white;
-		border: none;
-		border-radius: 0;
-	  }
+		display: initial;
+		> a,
+		> span {
+			display: block;
+			padding: 5px 14px;
+			background-color: $white;
+			border: none;
+			border-radius: 0;
+		}
 
-	  > a:hover,
-	  > a:focus {
-		text-decoration: none;
-		background-color:$primary;
-	  }
+		> a:hover,
+		> a:focus {
+			text-decoration: none;
+			background-color:$primary;
+		}
 	}
 }
 
@@ -473,7 +482,7 @@ hr.wide {
 	padding: initial;
 	background: initial;
 	color: inherit;
-    line-height: inherit;
+	line-height: inherit;
 	border: none;
 	border-radius: initial;
 	z-index: 1;
@@ -501,7 +510,7 @@ hr.wide {
 				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#ffffff', GradientType=0);
 			}
 		}
-}
+	}
 }
 
 .btn.wrap {
@@ -536,12 +545,12 @@ hr.wide {
 
 .round-color-icon {
 	border-radius: 50%;
-    display: inline-block;
+	display: inline-block;
 	width: 1em;
 	position: relative;
-    margin-right: 0.5em;
+	margin-right: 0.5em;
 	vertical-align: middle;
-    background-color: $brand-secondary;
+	background-color: $brand-secondary;
 	color: $white;
 	& > * {
 		position: absolute;
@@ -591,13 +600,13 @@ hr.wide {
 }
 
 .collection-page-buttons {
-    text-align: right;
+	text-align: right;
 }
 
 @media only screen and (max-width: map-get($container-max-widths, "md")){
-    .collection-page-buttons {
-        text-align: center;
-    }
+	.collection-page-buttons {
+		text-align: center;
+	}
 }
 
 /* Replicate Boostrap 3 style conventions */
@@ -721,9 +730,9 @@ ul {
 
 /* Match existing behaviour which shrinks lead paragraph size on smaller devices */
 @media (max-width: map-get($container-max-widths, "sm")) {
-    p.lead {
-        font-size: 1.0rem;
-    }
+	p.lead {
+		font-size: 1.0rem;
+	}
 }
 
 /* Restore BS3 padding on input group buttons */
@@ -799,7 +808,7 @@ ul {
 }
 
 .cb-data-tip {
-    width: 300px;
+	width: 300px;
 }
 
 .duplicate-result-scroll-window{
@@ -847,8 +856,8 @@ div[class~=collapsing]+div[class=card-header] .accordion-arrow {
 	transform: rotate(90deg);
 }
 .work-item{
-		border-bottom: 1px solid #EAE7E5;
-		margin-bottom: 0.5rem;
+	border-bottom: 1px solid #EAE7E5;
+	margin-bottom: 0.5rem;
 }
 
 .uf-modal-body .accordion > .card{
@@ -879,12 +888,12 @@ div[class~=collapsing]+div[class=card-header] .accordion-arrow {
 
 .hierarchy-arrow {
 	border-left: 1px solid $gray-400;
-    width: 1em;
-    height: 1em;
-    content: "";
-    display: inline-block;
-    border-bottom: 1px solid $gray-400;
-    position: relative;
-    bottom: 0.3em;
+	width: 1em;
+	height: 1em;
+	content: "";
+	display: inline-block;
+	border-bottom: 1px solid $gray-400;
+	position: relative;
+	bottom: 0.3em;
 	left: -0.5em;
 }

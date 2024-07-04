@@ -27,7 +27,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import React from 'react';
 import RevisionsTable from './parts/revisions-table';
-import {faXTwitter} from '@fortawesome/free-brands-svg-icons';
+import {faTwitter} from '@fortawesome/free-brands-svg-icons';
 
 
 const {Alert, Button, Col, Container, Row} = bootstrap;
@@ -153,10 +153,10 @@ class IndexPage extends React.Component {
 											<a className="contact-text" href="https://x.com/BookBrainz">
 												<FontAwesomeIcon
 													className="contact-text"
-													icon={faXTwitter}
+													icon={faTwitter}
 													size="2x"
 												/>
-												X
+												Twitter
 											</a>
 											<FontAwesomeIcon
 												className="margin-sides-1 contact-text"
@@ -236,15 +236,15 @@ class IndexPage extends React.Component {
 					<Col lg={10}>
 						<h2>Join Us!</h2>
 						<p className="lead">
-					First off,{' '}
+							First off,{' '}
 							<a href="/about" target="blank">
-						read about us
+								read about us
 							</a>{' and '}
 							<a href="/contribute" target="blank">
-						how you can help
+								how you can help
 							</a>. Then, if you think you want
-					to stick around, hit the button below to sign up
-					for a free BookBrainz account!
+							to stick around, hit the button below to sign up
+							for a free BookBrainz account!
 						</p>
 					</Col>
 				</Row>
@@ -255,7 +255,7 @@ class IndexPage extends React.Component {
 						size="lg"
 						variant="success"
 					>
-				Register!
+						Register!
 					</Button>
 				</div>
 			</React.Fragment>

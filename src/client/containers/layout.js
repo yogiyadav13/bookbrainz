@@ -27,8 +27,8 @@ import {IdentifierTypeEditorIcon, RelationshipTypeEditorIcon} from '../helpers/u
 import {PrivilegeType, checkPrivilege} from '../../common/helpers/privileges-utils';
 import {
 	faBarcode,
-	faChartLine, faClipboardQuestion, faFileLines, faGripVertical, faLink, faListUl, faNewspaper, faPlus, faQuestionCircle,
-	faSearch, faShieldHalved, faSignInAlt, faSignOutAlt, faTrophy, faUserCircle, faUserGear
+	faChartLine, faClipboardQuestion, faFileLines, faGripVertical, faLink, faListUl, faMoon, faNewspaper, faPlus, faQuestionCircle,
+	faSearch, faShieldHalved, faSignInAlt, faSignOutAlt, faSun, faTrophy, faUserCircle, faUserGear
 } from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import Footer from './../components/footer';
@@ -44,13 +44,18 @@ const {Alert, Button, Form, FormControl, InputGroup, Nav, Navbar, NavDropdown} =
 class Layout extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {keepMenuOpen: false, menuOpen: false};
+		this.state = {darkMode: false, keepMenuOpen: false, menuOpen: false};
 		this.renderNavContent = this.renderNavContent.bind(this);
 		this.renderNavHeader = this.renderNavHeader.bind(this);
 		this.renderDocsDropdown = this.renderDocsDropdown.bind(this);
 		this.handleDropdownToggle = this.handleDropdownToggle.bind(this);
 		this.handleDropdownClick = this.handleDropdownClick.bind(this);
 		this.handleMouseDown = this.handleMouseDown.bind(this);
+		this.handleDarkMode = this.handleDarkMode.bind(this);
+	}
+
+	handleDarkMode() {
+		this.setState(prevState => ({darkMode: !prevState.darkMode}));
 	}
 
 	handleMouseDown(event) {
@@ -338,38 +343,45 @@ class Layout extends React.Component {
 		const revisionsClassName = homepage || hideSearch ? 'ml-auto' : null;
 
 		return (
-			<Navbar.Collapse id="bs-example-navbar-collapse-1">
-				{!(homepage || hideSearch) && this.renderSearchForm()}
-				<Nav className={revisionsClassName}>
-					<Nav.Item>
-						<Nav.Link href="/revisions">
-							<FontAwesomeIcon icon={faListUl}/>
-							{' Revisions '}
-						</Nav.Link>
-					</Nav.Item>
-				</Nav>
-				<Nav>
-					<Nav.Item>
-						<Nav.Link href="/collections">
-							<FontAwesomeIcon icon={faGripVertical}/>
-							{' Collections '}
-						</Nav.Link>
-					</Nav.Item>
-				</Nav>
-				<Nav>
-					<Nav.Item>
-						<Nav.Link href="/statistics">
-							<FontAwesomeIcon icon={faChartLine}/>
-							{' Statistics '}
-						</Nav.Link>
-					</Nav.Item>
-				</Nav>
-				{this.renderDocsDropdown()}
-				{
-					user && user.id ?
-						this.renderLoggedInDropdown() : this.renderGuestDropdown()
-				}
-			</Navbar.Collapse>
+			<div className={this.state.darkMode ? 'dark-mode' : ''} id="bs-example-navbar-collapse-1">
+				<Navbar.Collapse id="bs-example-navbar-collapse-1">
+					{!(homepage || hideSearch) && this.renderSearchForm()}
+					<Nav className={revisionsClassName}>
+						<Nav.Item onClick={this.handleDarkMode}>
+							<Nav.Link>
+								<FontAwesomeIcon icon={this.state.darkMode ? faSun : faMoon}/>
+							</Nav.Link>
+						</Nav.Item>
+						<Nav.Item>
+							<Nav.Link href="/revisions">
+								<FontAwesomeIcon icon={faListUl}/>
+								{' Revisions '}
+							</Nav.Link>
+						</Nav.Item>
+					</Nav>
+					<Nav>
+						<Nav.Item>
+							<Nav.Link href="/collections">
+								<FontAwesomeIcon icon={faGripVertical}/>
+								{' Collections '}
+							</Nav.Link>
+						</Nav.Item>
+					</Nav>
+					<Nav>
+						<Nav.Item>
+							<Nav.Link href="/statistics">
+								<FontAwesomeIcon icon={faChartLine}/>
+								{' Statistics '}
+							</Nav.Link>
+						</Nav.Item>
+					</Nav>
+					{this.renderDocsDropdown()}
+					{
+						user && user.id ?
+							this.renderLoggedInDropdown() : this.renderGuestDropdown()
+					}
+				</Navbar.Collapse>
+			</div>
 		);
 	}
 
@@ -416,7 +428,7 @@ class Layout extends React.Component {
 		));
 
 		return (
-			<div>
+			<div className={this.state.darkMode ? 'dark-mode' : ''}>
 				<a className="sr-only sr-only-focusable" href="#content">
 					Skip to main content
 				</a>

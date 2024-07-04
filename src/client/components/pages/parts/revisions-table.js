@@ -65,7 +65,7 @@ function RevisionsTable(props) {
 						<tbody>
 							{
 								results.map((revision) => (
-									<tr key={revision.revisionId}>
+									<tr className="hover-color" key={revision.revisionId}>
 										<td>
 											<a
 												href={`/revision/${revision.revisionId}`}
@@ -90,7 +90,7 @@ function RevisionsTable(props) {
 												<td>
 													{revision.entities.map(entity => (
 														<div key={`${revision.revisionId}-${entity.bbid}`}>
-															<a href={getEntityUrl(entity)} >
+															<a href={getEntityUrl(entity)}>
 																{genEntityIconHTMLElement(entity.type)}
 																{getEntityLabel(entity)}
 															</a>
@@ -101,7 +101,7 @@ function RevisionsTable(props) {
 										{
 											showRevisionEditor ?
 												<td>
-													<a href={`/editor/${revision.editor.id}`} >
+													<a href={`/editor/${revision.editor.id}`}>
 														{revision.editor.name}
 													</a>
 												</td> : null
