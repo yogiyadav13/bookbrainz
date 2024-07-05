@@ -888,3 +888,12 @@ div[class~=collapsing]+div[class=card-header] .accordion-arrow {
     bottom: 0.3em;
 	left: -0.5em;
 }
+.hover-color :hover {
+	color: #963873;
+}
+.dark-mode{
+   background-color: rgb(13,17,23) !important;
+}
+.footer .text-right .small + .small {
+   margin-top: 7px;
+}

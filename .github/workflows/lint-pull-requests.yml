@@ -30,8 +30,8 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           
-      - name: NPM install
-        uses: bahmutov/npm-install@v1
+      - name: Install dependencies using npm
+        run: npm install
 
       - name: Run linters
         uses: wearerequired/lint-action@v1
@@ -41,4 +41,3 @@ jobs:
           # Auto-fix requires write permissions to commit changes, which we don't want to allow
           # See https://github.com/wearerequired/lint-action/issues/13
           auto_fix: false
-          
