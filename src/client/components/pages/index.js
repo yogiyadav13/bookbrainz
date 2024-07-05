@@ -27,7 +27,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import React from 'react';
 import RevisionsTable from './parts/revisions-table';
-import {faXTwitter} from '@fortawesome/free-brands-svg-icons';
+import {faTwitter} from '@fortawesome/free-brands-svg-icons';
 
 
 const {Alert, Button, Col, Container, Row} = bootstrap;
@@ -42,14 +42,14 @@ class IndexPage extends React.Component {
 	renderHeader() {
 		return (
 			<div>
-				<Alert className="text-center" variant="warning">
+				{/* <Alert className="text-center" variant="warning">
 					Under development — adventurous users, please test and
 					add data! Give us feedback about bugs, glitches and
 					potential improvements at {' '}
 					<a href="//tickets.metabrainz.org/projects/BB">
 						MetaBrainz JIRA!
 					</a>
-				</Alert>
+				</Alert> */}
 				<div id="background-image">
 					<div className="text-center" id="background-overlay">
 						<Container>
@@ -66,7 +66,7 @@ class IndexPage extends React.Component {
 										<input
 											required
 											autoFocus="autofocus"
-											className="form-control"
+											className={`form-control ${this.props.darkMode ? 'dark-mode' : ''}`}
 											name="q"
 											placeholder="Search for..."
 											type="text"
@@ -153,10 +153,10 @@ class IndexPage extends React.Component {
 											<a className="contact-text" href="https://x.com/BookBrainz">
 												<FontAwesomeIcon
 													className="contact-text"
-													icon={faXTwitter}
+													icon={faTwitter}
 													size="2x"
 												/>
-												X
+												Twitter
 											</a>
 											<FontAwesomeIcon
 												className="margin-sides-1 contact-text"
@@ -264,7 +264,7 @@ class IndexPage extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div className={this.props.darkMode ? 'dark-mode' : ''}>
 				{this.renderHeader()}
 				{this.renderContent()}
 			</div>
@@ -274,6 +274,7 @@ class IndexPage extends React.Component {
 
 IndexPage.displayName = 'IndexPage';
 IndexPage.propTypes = {
+	darkMode: PropTypes.bool.isRequired,
 	disableSignUp: PropTypes.bool,
 	isLoggedIn: PropTypes.bool.isRequired,
 	recent: PropTypes.array.isRequired,
