@@ -1,0 +1,38 @@
+.footer {
+    background-color: #f8f9fa; /* Light background */
+    color: #343a40; /* Dark text color */
+    padding: 20px 0;
+    border-top: 2px solid #e9ecef; /* Slightly darker border */
+    font-family: 'Roboto', sans-serif; /* Modern font */
+}
+
+.footer a.footer-link {
+    color: #007bff; /* Bootstrap primary color */
+    text-decoration: none;
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.footer a.footer-link:hover {
+    color: #0056b3; /* Darker shade on hover */
+    text-decoration: underline;
+}
+
+.footer-logo {
+    vertical-align: middle;
+}
+
+.footer .small {
+    margin-top: 10px;
+}
+
+.footer img {
+    border-radius: 5px; /* Rounded corners for images */
+}
+
+@media (max-width: 767px) {
+    .footer .text-md-left,
+    .footer .text-md-right {
+        text-align: left !important; /* Align text to the left on small screens */
+        margin-bottom: 10px;
+    }
+}
