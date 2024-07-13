@@ -28,7 +28,7 @@
   },
   "browserslist": "> 0.25%, not dead",
   "overrides": {
-    "react-select-fast-filter-options":{
+    "react-select-fast-filter-options": {
       "react-select": "$react-select"
     }
   },
@@ -69,7 +69,7 @@
     "passport": "^0.6.0",
     "passport-musicbrainz-oauth2": "git+https://git@github.com/LordSputnik/passport-musicbrainz-oauth2.git",
     "prop-types": "^15.8.1",
-    "react": "^16.13.1",
+    "react": "^16.14.0",
     "react-bootstrap": "^1.6.4",
     "react-chartjs-2": "^2.11.2",
     "react-datepicker": "^4.7.0",

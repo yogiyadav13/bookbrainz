@@ -26,7 +26,7 @@ import {
 } from './actions';
 import {Col, Form, OverlayTrigger, Row, Tooltip} from 'react-bootstrap';
 import type {List, Map} from 'immutable';
-import Select, {components} from 'react-select';
+import Select, {components, OptionProps} from 'react-select';
 import {faArrowTurnUp, faQuestionCircle} from '@fortawesome/free-solid-svg-icons';
 
 import type {Dispatch} from 'redux';
@@ -103,7 +103,7 @@ function sortWorkTypes(
 	return sortedArray;
 }
 
-function workTypeSelectMenuOption(props: Select.OptionProps<WorkType, false>) {
+function workTypeSelectMenuOption(props: OptionProps<WorkType, false>) {
 	const {data, label} = props;
 	const {depth, id, description} = data;
 	let indentationClass;

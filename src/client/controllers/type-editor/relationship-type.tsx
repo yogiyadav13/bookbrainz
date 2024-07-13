@@ -45,7 +45,7 @@ ReactDOM.hydrate(
  * but instead directly use webpack Hot Module Replacement API
  */
 
-if (module.hot) {
-	module.hot.accept();
+if ((module as any).hot) {
+	(module as any).hot.accept();
 }
 
