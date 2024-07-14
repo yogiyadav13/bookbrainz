@@ -301,7 +301,9 @@ a.contact-text:visited {
 		border: 1px solid hsl(0, 0%, 70%) !important;
 	}
 }
-
+td a:hover{
+	color: #963873;
+}
 .react-select__placeholder, .Select-placeholder{
 	color: $input-placeholder-color;
 	user-select: none;
